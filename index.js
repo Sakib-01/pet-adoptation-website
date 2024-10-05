@@ -11,8 +11,10 @@ const showCategory = (data) => {
   const btnCategory = document.getElementById("category-button");
   data.forEach((element) => {
     const button = document.createElement("div");
+    // console.log(element.category);
     button.innerHTML = `
     <button
+             onclick=loadPetByCategory('${element.category.toLowerCase()}')
               class="btn btn-outline font-semibold text-xl px-14 col-span-1"
             >
               <img
@@ -38,6 +40,7 @@ const loadPet = async () => {
 
 const showPets = (data) => {
   const petscontainer = document.getElementById("show-pets");
+  petscontainer.innerHTML = "";
   data.forEach((element) => {
     const petsCard = document.createElement("div");
     petsCard.innerHTML = `
@@ -60,7 +63,7 @@ const showPets = (data) => {
                     Gender: ${element.gender}
                   </p>
                   <p class="text-xs font-bold text-[rgba(73,73,73,0.7)]">Price: $${element.price}</p>
-                  <!-- card button  -->
+                 
                   <div class="card-actions justify-between">
                     <button
                       class="btn btn-outline font-bold text-xs text-cyan-600"
@@ -77,13 +80,23 @@ const showPets = (data) => {
                     >
                       Details
                     </button>
-                    <!-- card button  -->
+                   
                   </div>
                 </div>
               </div>
     `;
     petscontainer.appendChild(petsCard);
   });
+};
+
+// load by category
+const loadPetByCategory = async (id) => {
+  console.log(id);
+  const res = await fetch(
+    `https://openapi.programming-hero.com/api/peddy/category/${id}`
+  );
+  const data = await res.json();
+  showPets(data.data);
 };
 
 loadCategory();
