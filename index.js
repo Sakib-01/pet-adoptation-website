@@ -69,7 +69,8 @@ const showPets = (data) => {
                  
                   <div class="card-actions justify-between">
                     <button
-                      class="btn btn-outline font-bold text-xs text-cyan-600"
+                        onclick="petLiked('${element.image}')" 
+                        class="btn btn-outline font-bold text-xs text-cyan-600"
                     >
                       <i class="fa-solid fa-thumbs-up"></i>
                     </button>
@@ -101,6 +102,18 @@ const loadPetByCategory = async (id) => {
   const data = await res.json();
   showPets(data.data);
 };
+
+function petLiked(image) {
+  console.log(image);
+  const likedContainer = document.getElementById("pet-liked");
+  const likedImage = document.createElement("div");
+  likedImage.innerHTML = `
+    <div class="col-span-1 border-2">
+                <img src="${image}" alt="" />
+              </div>
+    `;
+  likedContainer.appendChild(likedImage);
+}
 
 loadCategory();
 loadPet();
