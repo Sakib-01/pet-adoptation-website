@@ -14,8 +14,11 @@ const showCategory = (data) => {
     // console.log(element.category);
     button.innerHTML = `
     <button
-             onclick=loadPetByCategory('${element.category.toLowerCase()}')
-              class="btn btn-outline font-semibold text-lg px-14 col-span-1"
+            id="${element.id}"
+             onclick=loadPetByCategory('${element.category.toLowerCase()}','${
+      element.id
+    }')
+              class="btn btn-outline font-semibold text-lg px-14 col-span-1 hover:bg-[rgb(14,122,129)] hover:text-black" 
             >
               <div class="flex items-center gap-2">
               <img
@@ -23,7 +26,7 @@ const showCategory = (data) => {
                 src="${element.category_icon}"
                 alt=""
               />
-              <p class="border-2">${element.category}</p>
+              <p class="">${element.category}</p>
               </div>
             </button>
     `;
@@ -93,14 +96,23 @@ const showPets = (data) => {
   });
 };
 
+function btnStyle() {
+  const btns = document.getElementsByClassName("btn");
+  for (const btn of btns) {
+    btn.classList.remove("active");
+  }
+}
 // load by category
-const loadPetByCategory = async (id) => {
+const loadPetByCategory = async (id, btnId) => {
   console.log(id);
+  const btn = document.getElementById(btnId);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/peddy/category/${id}`
   );
   const data = await res.json();
   showPets(data.data);
+  btnStyle();
+  btn.classList.add("active");
 };
 
 function petLiked(image) {
