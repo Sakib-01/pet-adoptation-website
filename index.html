@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peddy</title>
+    <!-- tailwind and daisyUI  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              txtprimary: "rgb(19,19,19)",
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- tailwind and daisyUI  -->
+  </head>
+  <body>
+    <header>
+      <!-- navbar  -->
+      <div class="navbar bg-base-100 w-10/12 mx-auto">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            >
+              <li><a>Home</a></li>
+              <li>
+                <a>Shop</a>
+              </li>
+              <li><a>Contact</a></li>
+            </ul>
+          </div>
+          <div class="flex items-center font-extrabold gap-2">
+            <img class="w-5 h-5" src="./images/logo.webp" alt="" />
+            <a class="text-xl text-txtprimary">Peddy</a>
+          </div>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul
+            class="menu menu-horizontal px-1 font-semibold text-[rgb(73,73,73)]"
+          >
+            <li><a>Home</a></li>
+            <li>
+              <a>Shop</a>
+            </li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <button class="btn btn-ghost btn-circle">
+            <div class="indicator border-2 rounded-full p-3">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </button>
+        </div>
+      </div>
+      <!-- navbar  -->
+
+      <!-- banner section  -->
+
+      <section class="w-10/12 mx-auto h-auto rounded-2xl">
+        <div class="text-center h-full rounded-3xl border-2">
+          <div class="flex flex-col justify-center items-center space-y-3">
+            <p class="font-semibold text-[rgb(73,73,73)]">
+              Bringing Families Together ❤️‍🔥
+            </p>
+            <h2 class="text-5xl font-bold">
+              Your Path to Adoption <br />
+              Starts Here
+            </h2>
+            <p class="w-8/12 mx-auto font-semibold text-[rgb(73,73,73)]">
+              It is a long established fact that a reader will be distracted by
+              the readable content of a page when looking at its layout. The
+              point of using Lorem Ipsum is that it has a.
+            </p>
+            <button
+              class="bg-[rgb(14,122,129)] px-5 py-3 rounded-2xl text-white"
+            >
+              View More</button
+            ><img
+              class="w-[520px] h-96 text-center"
+              src="./images/pet.webp"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+      <!-- banner section  -->
+    </header>
+    <script src="index.js"></script>
+  </body>
+</html>
