@@ -15,13 +15,16 @@ const showCategory = (data) => {
     button.innerHTML = `
     <button
              onclick=loadPetByCategory('${element.category.toLowerCase()}')
-              class="btn btn-outline font-semibold text-xl px-14 col-span-1"
+              class="btn btn-outline font-semibold text-lg px-14 col-span-1"
             >
+              <div class="flex items-center gap-2">
               <img
-                class="w-8 h-8"
+                class="w-5 h-5"
                 src="${element.category_icon}"
                 alt=""
-              />${element.category}
+              />
+              <p class="border-2">${element.category}</p>
+              </div>
             </button>
     `;
     btnCategory.appendChild(button);
