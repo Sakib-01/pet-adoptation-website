@@ -34,18 +34,38 @@ const showCategory = (data) => {
   });
 };
 
+function sorting(id) {
+  // console.log(id);
+  id.sort((a, b) => a.price - b.price);
+  // console.log(id);
+}
+
 // load pets
 
-const loadPet = async () => {
-  const res = await fetch(
-    "https://openapi.programming-hero.com/api/peddy/pets"
-  );
-  const data = await res.json();
-  showPets(data.pets);
+const loadPet = async (id = "") => {
+  if (id == false) {
+    const res = await fetch(
+      "https://openapi.programming-hero.com/api/peddy/pets"
+    );
+    const data = await res.json();
+    showPets(data.pets);
+  } else {
+    console.log(id);
+    const res = await fetch(
+      "https://openapi.programming-hero.com/api/peddy/pets"
+    );
+    const data = await res.json();
+    sorting(data.pets);
+    showPets(data.pets);
+  }
 };
 
 const showPets = (data) => {
   const petscontainer = document.getElementById("show-pets");
+  // document.getElementById("btn-sort").addEventListener("click", function () {
+  //   console.log("ok");
+  //   loadPet(data);
+  // });
   petscontainer.innerHTML = "";
   data.forEach((element) => {
     const petsCard = document.createElement("div");
@@ -132,6 +152,10 @@ const loadPetByCategory = async (id, btnId) => {
   );
   const data = await res.json();
   showPets(data.data);
+  document.getElementById("btn-sort").addEventListener("click", function () {
+    sorting(data.data);
+    showPets(data.data);
+  });
   btnStyle();
   btn.classList.add("active");
 };
@@ -160,7 +184,7 @@ const petDetails = async (id) => {
     <div class="modal-box">
       <div class="max-w-sm mx-auto bg-white rounded-lg shadow-md overflow-hidden">
     
-            <img class="w-full h-64 object-cover" src="${
+            <img class="w-full h-56 object-cover" src="${
               data.petData.image
             }" alt="Pet Image">
 
@@ -232,3 +256,16 @@ const petDetails = async (id) => {
 
 loadCategory();
 loadPet();
+const sortBtn = document.getElementById("btn-sort");
+
+// function sortPet() {
+//   if (sortBtn) {
+//     loadPet("a");
+//   } else {
+//   }
+// }
+
+document.getElementById("btn-sort").addEventListener("click", function () {
+  console.log("ok");
+  loadPet(data);
+});
