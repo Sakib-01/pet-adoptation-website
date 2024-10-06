@@ -321,12 +321,11 @@ function adoptModal(id) {
 
   // Reset countdown and message visibility
   countdownElement.textContent = 3;
-  countdownElement.style.display = "block"; // Ensure countdown is visible
-  messageElement.style.display = "none"; // Hide message initially
+  countdownElement.style.display = "block";
+  messageElement.style.display = "none";
 
   let count = 3;
 
-  // Clear any existing interval to prevent multiple intervals from running
   clearInterval(window.countdownInterval);
 
   // Countdown from 3 to 1
@@ -335,8 +334,8 @@ function adoptModal(id) {
       countdownElement.textContent = --count;
     } else {
       clearInterval(window.countdownInterval);
-      countdownElement.style.display = "none"; // Hide countdown
-      messageElement.style.display = "block"; // Show message
+      countdownElement.style.display = "none";
+      messageElement.style.display = "block";
     }
   }, 1000);
 
