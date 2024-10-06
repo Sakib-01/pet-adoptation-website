@@ -118,7 +118,9 @@ const showPets = (data) => {
                       <i class="fa-solid fa-thumbs-up"></i>
                     </button>
                     <button
-                      class="btn btn-outline font-bold text-xs text-cyan-600"
+                    id="${element.pet_name}"
+                    onclick="adoptModal('${element.pet_name}')"
+                      class="btn btn-outline font-bold text-xs text-cyan-600 adopt-btn"
                     >
                       Adopt
                     </button>
@@ -258,6 +260,19 @@ const petDetails = async (id) => {
   my_modal_1.showModal();
 };
 
+function adoptBtnStyle() {
+  const adoptBtns = document.getElementsByClassName("adopt-btn");
+  for (const btn of adoptBtns) {
+    btn.classList.remove("btn-disabled");
+  }
+}
+function adoptModal(id) {
+  my_modal_2.showModal();
+  console.log(id);
+  const adoptBtns = document.getElementById(id);
+  adoptBtnStyle();
+  adoptBtns.classList.add("btn-disabled");
+}
 loadCategory();
 loadPet();
 
