@@ -45,3 +45,11 @@
     stroke-dashoffset: 0;
   }
 }
+
+#loading {
+  display: block;
+  text-align: center;
+}
+#show-pets {
+  display: hidden;
+}

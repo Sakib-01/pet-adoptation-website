@@ -42,36 +42,30 @@ function sorting(id) {
 
 // load pets
 
-const loadPet = async (id = "") => {
-  if (id == false) {
-    const res = await fetch(
-      "https://openapi.programming-hero.com/api/peddy/pets"
-    );
-    const data = await res.json();
+const loadPet = async () => {
+  const res = await fetch(
+    "https://openapi.programming-hero.com/api/peddy/pets"
+  );
+  const data = await res.json();
+  setTimeout(() => {
     showPets(data.pets);
-  } else {
-    console.log(id);
-    const res = await fetch(
-      "https://openapi.programming-hero.com/api/peddy/pets"
-    );
-    const data = await res.json();
-    sorting(data.pets);
-    showPets(data.pets);
-  }
+  }, 2000);
+  // showPets(data.pets);
 };
 
+const petscontainer = document.getElementById("show-pets");
 const showPets = (data) => {
-  const petscontainer = document.getElementById("show-pets");
   // document.getElementById("btn-sort").addEventListener("click", function () {
   //   console.log("ok");
   //   loadPet(data);
   // });
+  document.getElementById("loading").style.display = "none";
   petscontainer.innerHTML = "";
   data.forEach((element) => {
     const petsCard = document.createElement("div");
     petsCard.innerHTML = `
-    <div
-                class="card card-compact border-2 rounded-3xl shadow-xl mb-5 col-span-1"
+    <div id="pet-card"
+                class="card card-compact border-2 rounded-3xl shadow-xl mb-5 col-span-1 pet-card"
               >
                 <figure class="p-5 rounded-2xl">
                   <img class="h-[160px] rounded-2xl"
@@ -136,6 +130,10 @@ const showPets = (data) => {
               </div>
     `;
     petscontainer.appendChild(petsCard);
+    const cards = document.getElementsByClassName("pet-card");
+    for (const card of cards) {
+      card.classList.remove("hidden");
+    }
   });
 };
 
@@ -150,20 +148,40 @@ function btnStyle() {
 // load by category
 const loadPetByCategory = async (id, btnId) => {
   console.log(id);
+  const cards = document.getElementsByClassName("pet-card");
+  for (const card of cards) {
+    card.classList.add("hidden");
+  }
+  document.getElementById("loading").style.display = "block";
   const btn = document.getElementById(btnId);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/peddy/category/${id}`
   );
   const data = await res.json();
-  showPets(data.data);
+  setTimeout(() => {
+    showPets(data.data);
+  }, 2000);
+
   const btnSort = document
     .getElementById("btn-sort")
     .addEventListener("click", function () {
+      const cards = document.getElementsByClassName("pet-card");
+      for (const card of cards) {
+        card.classList.add("hidden");
+      }
       sorting(data.data);
-      showPets(data.data);
+      document.getElementById("loading").style.display = "block";
+      // loading
+      setTimeout(() => {
+        showPets(data.data);
+      }, 2000);
+      // loading
     });
   btnStyle();
   btn.classList.add("active");
+
+  const loading = document.getElementById("loading");
+  loading.classList.add("block");
 };
 
 function petLiked(image) {
@@ -270,6 +288,7 @@ function adoptBtnStyle() {
 function adoptModal(id) {
   const countdownElement = document.getElementById("countdown");
   const messageElement = document.getElementById("message");
+  countdownElement.textContent = 3;
 
   // Countdown from 3 to 1
   let count = 3;
@@ -282,7 +301,7 @@ function adoptModal(id) {
       messageElement.style.display = "block"; // Show the message
     }
   }, 1000);
-  my_modal_2.showModal(id);
+  my_modal_2.showModal();
   console.log(id);
   const adoptBtns = document.getElementById(id);
   adoptBtnStyle();
