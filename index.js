@@ -311,30 +311,45 @@ function adoptBtnStyle() {
   const adoptBtns = document.getElementsByClassName("adopt-btn");
   for (const btn of adoptBtns) {
     btn.classList.remove("btn-disabled");
+    btn.innerText = "Adopt";
   }
 }
 
 function adoptModal(id) {
   const countdownElement = document.getElementById("countdown");
   const messageElement = document.getElementById("message");
+
+  // Reset countdown and message visibility
   countdownElement.textContent = 3;
+  countdownElement.style.display = "block"; // Ensure countdown is visible
+  messageElement.style.display = "none"; // Hide message initially
+
+  let count = 3;
+
+  // Clear any existing interval to prevent multiple intervals from running
+  clearInterval(window.countdownInterval);
 
   // Countdown from 3 to 1
-  let count = 3;
-  const countdownInterval = setInterval(() => {
+  window.countdownInterval = setInterval(() => {
     if (count > 1) {
       countdownElement.textContent = --count;
     } else {
-      clearInterval(countdownInterval);
-      countdownElement.style.display = "none"; // Hide the countdown
-      messageElement.style.display = "block"; // Show the message
+      clearInterval(window.countdownInterval);
+      countdownElement.style.display = "none"; // Hide countdown
+      messageElement.style.display = "block"; // Show message
     }
   }, 1000);
+
+  // Show modal
   my_modal_2.showModal();
-  console.log(id);
+
+  // Disable the adopt button and update text
   const adoptBtns = document.getElementById(id);
-  adoptBtnStyle();
   adoptBtns.classList.add("btn-disabled");
+  adoptBtns.innerText = "Adopted";
+
+  // Log the ID for debugging
+  console.log(id);
 }
 
 loadCategory();
