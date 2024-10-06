@@ -138,9 +138,11 @@ const showPets = (data) => {
 };
 
 function btnStyle() {
+  const btnSort = document.getElementById("btn-sort");
   const btns = document.getElementsByClassName("btn");
   for (const btn of btns) {
     btn.classList.remove("active");
+    btnSort.classList.remove("btn-disabled");
   }
 }
 // load by category
@@ -152,10 +154,12 @@ const loadPetByCategory = async (id, btnId) => {
   );
   const data = await res.json();
   showPets(data.data);
-  document.getElementById("btn-sort").addEventListener("click", function () {
-    sorting(data.data);
-    showPets(data.data);
-  });
+  const btnSort = document
+    .getElementById("btn-sort")
+    .addEventListener("click", function () {
+      sorting(data.data);
+      showPets(data.data);
+    });
   btnStyle();
   btn.classList.add("active");
 };
@@ -256,7 +260,6 @@ const petDetails = async (id) => {
 
 loadCategory();
 loadPet();
-const sortBtn = document.getElementById("btn-sort");
 
 // function sortPet() {
 //   if (sortBtn) {
@@ -265,7 +268,7 @@ const sortBtn = document.getElementById("btn-sort");
 //   }
 // }
 
-document.getElementById("btn-sort").addEventListener("click", function () {
-  console.log("ok");
-  loadPet(data);
-});
+// document.getElementById("btn-sort").addEventListener("click", function () {
+//   console.log("ok");
+//   loadPet(data);
+// });
