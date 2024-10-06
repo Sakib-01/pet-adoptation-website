@@ -59,16 +59,24 @@ const showPets = (data) => {
   //   console.log("ok");
   //   loadPet(data);
   // });
-  document.getElementById("loading").style.display = "none";
-  petscontainer.innerHTML = "";
-  data.forEach((element) => {
-    const petsCard = document.createElement("div");
-    petsCard.innerHTML = `
+  console.log(data);
+  if (data != "") {
+    document.getElementById("loading").style.display = "none";
+    petscontainer.innerHTML = "";
+    petscontainer.classList.add(
+      "md:grid",
+      "md:grid-cols-2",
+      "lg:grid",
+      "lg:grid-cols-3"
+    );
+    data.forEach((element) => {
+      const petsCard = document.createElement("div");
+      petsCard.innerHTML = `
     <div id="pet-card"
                 class="card card-compact border-2 rounded-3xl shadow-xl mb-5 col-span-1 pet-card"
               >
                 <figure class="p-5 rounded-2xl">
-                  <img class="h-[160px] rounded-2xl"
+                  <img class="h-[200px] rounded-2xl w-full object-fill"
                     src="${element.image}"
                     alt="${element.category}"
                   />
@@ -100,7 +108,7 @@ const showPets = (data) => {
                   <div class="flex items-center space-x-2">
                     <i class="fa-solid fa-tag"></i>
                     <p class="text-xs font-bold text-[rgba(73,73,73,0.7)]">Price: $${
-                      element.price
+                      element.price ? `${element.price}` : "N/A"
                     }</p>
                   </div>
                  
@@ -129,12 +137,33 @@ const showPets = (data) => {
                 </div>
               </div>
     `;
-    petscontainer.appendChild(petsCard);
-    const cards = document.getElementsByClassName("pet-card");
-    for (const card of cards) {
-      card.classList.remove("hidden");
-    }
-  });
+      petscontainer.appendChild(petsCard);
+      const cards = document.getElementsByClassName("pet-card");
+      for (const card of cards) {
+        card.classList.remove("hidden");
+      }
+    });
+  } else {
+    const petscontainer = document.getElementById("show-pets");
+    document.getElementById("loading").style.display = "none";
+    const emptyContainer = document.createElement("div");
+    emptyContainer.innerHTML = `
+    <div class=" h-[200px] mt-32 flex flex-col border-2  rounded-3xl bg-slate-100 items-center justify-end text-center">
+        <img class="w-20 h-20" src="./images/error.webp" alt="no data">
+        <h3 class="font-extrabold text-4xl ">No Information Available</h3>
+        <p class="text-slate-500 font-semibold text-xl">The Information you are looking for is not Available at this moment . Please Stay  Connected for latest Update. THANK YOU</p>
+      </div>
+    `;
+    petscontainer.classList.remove(
+      "md:grid",
+      "md:grid-cols-2",
+      "lg:grid",
+      "lg:grid-cols-3"
+    );
+    petscontainer.prepend(emptyContainer);
+    const btnSort = document.getElementById("btn-sort");
+    btnSort.classList.add("btn-disabled");
+  }
 };
 
 function btnStyle() {
