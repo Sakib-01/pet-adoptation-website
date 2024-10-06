@@ -3,3 +3,45 @@
   border: 1.5px solid rgb(14, 122, 129);
   border-radius: 120px;
 }
+#message {
+  height: 250px;
+  background-color: #f0f0f0;
+}
+
+.checkmark {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
+
+.checkmark-circle {
+  text-align: center;
+  stroke: #4caf50;
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 157; /* Circumference of the circle (2 * π * r) */
+  stroke-dashoffset: 157; /* Start with the circle not drawn */
+  animation: draw 0.6s ease forwards;
+}
+
+.checkmark-check {
+  text-align: center;
+  stroke: #4caf50;
+  stroke-width: 5;
+  stroke-dasharray: 48; /* Length of the checkmark */
+  stroke-dashoffset: 48; /* Start with the checkmark not drawn */
+  animation: check 0.3s ease forwards;
+  animation-delay: 0.6s; /* Start the checkmark after the circle animation */
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

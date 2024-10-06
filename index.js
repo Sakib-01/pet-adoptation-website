@@ -266,13 +266,29 @@ function adoptBtnStyle() {
     btn.classList.remove("btn-disabled");
   }
 }
+
 function adoptModal(id) {
-  my_modal_2.showModal();
+  const countdownElement = document.getElementById("countdown");
+  const messageElement = document.getElementById("message");
+
+  // Countdown from 3 to 1
+  let count = 3;
+  const countdownInterval = setInterval(() => {
+    if (count > 1) {
+      countdownElement.textContent = --count;
+    } else {
+      clearInterval(countdownInterval);
+      countdownElement.style.display = "none"; // Hide the countdown
+      messageElement.style.display = "block"; // Show the message
+    }
+  }, 1000);
+  my_modal_2.showModal(id);
   console.log(id);
   const adoptBtns = document.getElementById(id);
   adoptBtnStyle();
   adoptBtns.classList.add("btn-disabled");
 }
+
 loadCategory();
 loadPet();
 
