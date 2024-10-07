@@ -36,7 +36,7 @@ const showCategory = (data) => {
 
 function sorting(id) {
   // console.log(id);
-  id.sort((a, b) => a.price - b.price);
+  id.sort((a, b) => b.price - a.price);
   // console.log(id);
 }
 
