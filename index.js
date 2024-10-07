@@ -148,7 +148,7 @@ const showPets = (data) => {
     document.getElementById("loading").style.display = "none";
     const emptyContainer = document.createElement("div");
     emptyContainer.innerHTML = `
-    <div class=" h-[200px] mt-32 flex flex-col border-2  rounded-3xl bg-slate-100 items-center justify-end text-center">
+    <div class=" h-[200px] mt-32 flex flex-col   rounded-3xl  items-center justify-end text-center">
         <img class="w-20 h-20" src="./images/error.webp" alt="no data">
         <h3 class="font-extrabold text-4xl ">No Information Available</h3>
         <p class="text-slate-500 font-semibold text-xl">The Information you are looking for is not Available at this moment . Please Stay  Connected for latest Update. THANK YOU</p>
@@ -347,7 +347,6 @@ function adoptModal(id) {
   adoptBtns.classList.add("btn-disabled");
   adoptBtns.innerText = "Adopted";
 
-  // Log the ID for debugging
   console.log(id);
 }
 
