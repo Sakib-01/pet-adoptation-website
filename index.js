@@ -350,17 +350,13 @@ function adoptModal(id) {
   console.log(id);
 }
 
+document
+  .getElementById("view-more-button")
+  .addEventListener("click", function () {
+    document.getElementById("adopt").scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+
 loadCategory();
 loadPet();
-
-// function sortPet() {
-//   if (sortBtn) {
-//     loadPet("a");
-//   } else {
-//   }
-// }
-
-// document.getElementById("btn-sort").addEventListener("click", function () {
-//   console.log("ok");
-//   loadPet(data);
-// });
